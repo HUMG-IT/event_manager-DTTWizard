@@ -19,6 +19,7 @@ class _EventViewState extends State<EventView> {
   final calendarController = CalendarController();
   @override
   void initState() {
+    super.initState();
     calendarController.view = CalendarView.day;
     loadEvents();
   }
@@ -86,6 +87,22 @@ class _EventViewState extends State<EventView> {
                 ),
               ).then((value) async {
                 // Nếu sự kiện được lưu thành công, tải lại danh sách sự kiện
+                if (value == true) {
+                  await loadEvents();
+                }
+              });
+            }
+          },
+          onTap: (details) {
+            if (details.targetElement == CalendarElement.appointment) {
+              final event = details.appointments!.first;
+
+              Navigator.push(
+                context,
+                MaterialPageRoute(
+                  builder: (context) => EventDetailView(event: event),
+                ),
+              ).then((value) async {
                 if (value == true) {
                   await loadEvents();
                 }

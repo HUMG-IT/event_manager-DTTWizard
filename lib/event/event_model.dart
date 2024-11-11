@@ -111,7 +111,11 @@ class EventModel {
         recurrenceRule.hashCode;
   }
 
-  get formatedStartTimeString => null;
+}
+extension EventModelExtensions on EventModel {
+  String get formattedStartTimeString =>
+      '${startTime.hour}:${startTime.minute}, ${startTime.day}/${startTime.month}/${startTime.year}';
 
-  get formatedEndTimeString => null;
+  String get formattedEndTimeString =>
+      '${endTime.hour}:${endTime.minute}, ${endTime.day}/${endTime.month}/${endTime.year}';
 }
