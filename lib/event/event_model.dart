@@ -15,7 +15,7 @@ class EventModel {
     this.event,
     required this.startTime,
     required this.endTime,
-    required this.isAllDay,
+    this.isAllDay= false,
     required this.subject,
     required this.notes,
     required this.recurrenceRule,
@@ -110,4 +110,8 @@ class EventModel {
         notes.hashCode ^
         recurrenceRule.hashCode;
   }
+
+  get formatedStartTimeString => null;
+
+  get formatedEndTimeString => null;
 }

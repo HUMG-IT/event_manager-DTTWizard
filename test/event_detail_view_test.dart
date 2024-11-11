@@ -13,6 +13,10 @@ void main() {
     final newEvent = EventModel(
       startTime: DateTime.now(),
       endTime: DateTime.now().add(const Duration(hours: 1)),
+      isAllDay: false,
+      subject: '',
+      notes: '',
+      recurrenceRule: '',
     );
 
     // Xây dựng ứng dụng

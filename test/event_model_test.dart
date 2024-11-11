@@ -27,12 +27,12 @@ void main() {
       final event = EventModel(
         id: '1',
         startTime: DateTime(2023, 10, 1, 10, 0),
-        endTime: DateTime(2023, 10, 1, 12, 0),
+        endTime: DateTime(2023, 10, 1, 12, 0), subject: '', notes: '', recurrenceRule: '',
       );
 
       final updatedEvent = event.copyWith(
         subject: 'Updated Meeting',
-        isAllDay: true,
+        isAllDay: false,
       );
 
       expect(updatedEvent.subject, 'Updated Meeting');
@@ -46,7 +46,7 @@ void main() {
         id: '1',
         startTime: DateTime(2023, 10, 1, 10, 0),
         endTime: DateTime(2023, 10, 1, 12, 0),
-        subject: 'Meeting',
+        subject: 'Meeting', notes: '', recurrenceRule: '',
       );
 
       final map = event.toMap();
@@ -61,6 +61,9 @@ void main() {
         startTime: DateTime(2023, 11, 1, 9, 0),
         endTime: DateTime(2023, 11, 1, 11, 0),
         subject: 'Conference',
+        isAllDay: false,
+        notes: '',
+        recurrenceRule: '',
       );
 
       final jsonStr = event.toJson();
@@ -73,6 +76,10 @@ void main() {
       final event = EventModel(
         startTime: DateTime(2023, 12, 25, 8, 30),
         endTime: DateTime(2023, 12, 25, 10, 30),
+        isAllDay: false,
+        notes: '',
+        subject: '',
+        recurrenceRule: '',
       );
 
       expect(event.formatedStartTimeString, '8:30, 25/12/2023');

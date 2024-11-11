@@ -12,6 +12,9 @@ void main() {
       startTime: DateTime.now(),
       endTime: DateTime.now().add(const Duration(hours: 1)),
       subject: 'Sự kiện kiểm thử',
+      isAllDay: false,
+      notes: '',
+      recurrenceRule: '',
     );
 
     // Lưu sự kiện
@@ -24,7 +27,7 @@ void main() {
     expect(events.any((e) => e.id == 'test-id'), true);
 
     // Xóa sự kiện
-    await eventService.deleteEvent(event);
+    await eventService.deleteEvent(event as String);
 
     // Kiểm tra xem sự kiện đã bị xóa
     final eventsAfterDelete = await eventService.getAllEvents();

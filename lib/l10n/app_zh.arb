@@ -1,3 +1,5 @@
 {
-    "appTitle" : "活动经理"
+    "appTitle": "事件管理",
+    "addEvents": "添加事件",
+    "eventDetails": "事件详情"
 }
