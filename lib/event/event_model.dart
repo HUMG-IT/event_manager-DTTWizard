@@ -15,8 +15,8 @@ class EventModel {
     this.event,
     required this.startTime,
     required this.endTime,
-    this.isAllDay= true,
-    this.subject ='',
+    this.isAllDay = true,
+    this.subject = '',
     required this.notes,
     required this.recurrenceRule,
   });
@@ -43,7 +43,6 @@ class EventModel {
     );
   }
 
-  // Convert the object into a Map for easy storage or network transmission
   Map<String, dynamic> toMap() {
     return {
       'id': id,
@@ -57,7 +56,6 @@ class EventModel {
     };
   }
 
-  // Create an instance from a map (for deserialization)
   factory EventModel.fromMap(Map<String, dynamic> map) {
     return EventModel(
       id: map['id'],
@@ -71,10 +69,8 @@ class EventModel {
     );
   }
 
-  // Convert the object to a JSON string
   String toJson() => json.encode(toMap());
 
-  // Create an instance from a JSON string (for deserialization)
   factory EventModel.fromJson(String source) =>
       EventModel.fromMap(json.decode(source));
 
@@ -109,17 +105,12 @@ class EventModel {
         notes.hashCode ^
         recurrenceRule.hashCode;
   }
-
-  get formatedStartTimeString => null;
-
-  get formatedEndTimeString => null;
-
-
 }
+
 extension EventModelExtensions on EventModel {
   String get formattedStartTimeString =>
-      '${startTime.hour}:${startTime.minute}, ${startTime.day}/${startTime.month}/${startTime.year}';
+      '${startTime.hour}:${startTime.minute.toString().padLeft(2, '0')}, ${startTime.day}/${startTime.month}/${startTime.year}';
 
   String get formattedEndTimeString =>
-      '${endTime.hour}:${endTime.minute}, ${endTime.day}/${endTime.month}/${endTime.year}';
+      '${endTime.hour}:${endTime.minute.toString().padLeft(2, '0')}, ${endTime.day}/${endTime.month}/${endTime.year}';
 }
