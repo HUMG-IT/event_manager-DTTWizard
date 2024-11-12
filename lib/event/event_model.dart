@@ -16,12 +16,11 @@ class EventModel {
     required this.startTime,
     required this.endTime,
     this.isAllDay= false,
-    required this.subject,
+    this.subject ='',
     required this.notes,
     required this.recurrenceRule,
   });
 
-  // Copy constructor to create a new instance with some fields changed
   EventModel copyWith({
     String? id,
     String? event,
@@ -110,6 +109,11 @@ class EventModel {
         notes.hashCode ^
         recurrenceRule.hashCode;
   }
+
+  get formatedStartTimeString => null;
+
+  get formatedEndTimeString => null;
+
 
 }
 extension EventModelExtensions on EventModel {

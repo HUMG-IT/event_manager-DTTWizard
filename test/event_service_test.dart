@@ -27,7 +27,7 @@ void main() {
     expect(events.any((e) => e.id == 'test-id'), true);
 
     // Xóa sự kiện
-    await eventService.deleteEvent(event as String);
+    await eventService.deleteEvent(event );
 
     // Kiểm tra xem sự kiện đã bị xóa
     final eventsAfterDelete = await eventService.getAllEvents();

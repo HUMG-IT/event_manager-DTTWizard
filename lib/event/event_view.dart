@@ -63,53 +63,34 @@ class _EventViewState extends State<EventView> {
           ],
         ),
         body: SfCalendar(
-          controller: calendarController,
-          dataSource: EventDataSource(item),
-          monthViewSettings: const MonthViewSettings(
-              appointmentDisplayMode: MonthAppointmentDisplayMode.appointment),
-          onLongPress: (details) {
-            if (details.targetElement == CalendarElement.calendarCell) {
-              // Tạo một sự kiện mới
-              final newEvent = EventModel(
-                startTime: details.date!,
-                endTime: details.date!.add(const Duration(hours: 1)),
-                subject: 'Sự kiện mới',
-                isAllDay: false,
-                notes: '',
-                recurrenceRule: '',
-              );
+  controller: calendarController,
+  dataSource: EventDataSource(item),
+  monthViewSettings: const MonthViewSettings(
+    appointmentDisplayMode: MonthAppointmentDisplayMode.appointment,
+  ),
+  onLongPress: (details) {
+    if (details.targetElement == CalendarElement.calendarCell) {
+      // Tạo sự kiện mới
+      final newEvent = EventModel(
+        startTime: details.date!,
+        endTime: details.date!.add(const Duration(hours: 1)),
+        subject: 'Sự kiện mới', notes: '', recurrenceRule: '',
+      );
 
-              // Điều hướng đến màn hình chi tiết sự kiện
-              Navigator.push(
-                context,
-                MaterialPageRoute(
-                  builder: (context) => EventDetailView(event: newEvent),
-                ),
-              ).then((value) async {
-                // Nếu sự kiện được lưu thành công, tải lại danh sách sự kiện
-                if (value == true) {
-                  await loadEvents();
-                }
-              });
-            }
-          },
-          onTap: (details) {
-            if (details.targetElement == CalendarElement.appointment) {
-              final event = details.appointments!.first;
-
-              Navigator.push(
-                context,
-                MaterialPageRoute(
-                  builder: (context) => EventDetailView(event: event),
-                ),
-              ).then((value) async {
-                if (value == true) {
-                  await loadEvents();
-                }
-              });
-            }
-          },
-        ));
+      // Điều hướng đến màn hình chi tiết sự kiện
+      Navigator.of(context).push(
+        MaterialPageRoute(
+          builder: (context) => EventDetailView(event: newEvent),
+        ),
+      ).then((value) async {
+        if (value == true) {
+          // Cập nhật lại danh sách sự kiện
+          await loadEvents();
+        }
+      });
+    }
+  },
+));
   }
 
   Icon getCalendarViewIcon(CalendarView view) {

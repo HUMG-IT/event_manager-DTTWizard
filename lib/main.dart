@@ -24,7 +24,7 @@ class MyApp extends StatelessWidget {
       supportedLocales: [
         Locale('en'),
         Locale('vi'),
-        Locale('china'),
+        Locale('zh'),
       ],
       locale: Locale("vi"),
       home: EventView(),

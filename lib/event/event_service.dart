@@ -2,45 +2,34 @@ import 'package:localstore/localstore.dart';
 import 'event_model.dart';
 
 class EventService {
-  final db = Localstore.instance;
-  final String collectionPath = 'events'; // Tên collection cho sự kiện
+  final db = Localstore.getInstance(useSupportDir:true);
+  final path ='events';
+  
+
 
   /// Lấy danh sách tất cả sự kiện từ localstore.
   Future<List<EventModel>> getAllEvents() async {
-    final eventsMap = await db.collection(collectionPath).get();
-
+    final eventsMap = await db.collection(path).get();
     if (eventsMap != null) {
       return eventsMap.entries.map((entry) {
-        final data = entry.value as Map<String, dynamic>;
-        data['id'] = entry.key; // Đặt ID từ key của tài liệu
-        return EventModel.fromMap(data);
+        final eventData = entry.value as Map<String, dynamic>;
+        eventData['id'] = entry.key.split('/').last; 
+        return EventModel.fromMap(eventData);
       }).toList();
     }
     return [];
   }
 
   /// Thêm hoặc cập nhật một sự kiện vào localstore.
-  ///
-  /// [event] là đối tượng EventModel cần lưu trữ.
-  Future<void> addOrUpdateEvent(EventModel event) async {
-    try {
-      final eventData = event.toMap();
-      await db.collection(collectionPath).doc(event.id).set(eventData);
-    } catch (e) {
-      print('Lỗi khi thêm hoặc cập nhật sự kiện: $e');
-    }
-  }
 
+  Future<void> saveEvent(EventModel item) async {
+  item.id ??= db.collection(path).doc().id;
+  await db.collection(path).doc(item.id).set(item.toMap());
+}
   /// Xóa một sự kiện khỏi localstore bằng ID.
-  ///
-  /// [id] là ID của sự kiện cần xóa.
-  Future<void> deleteEvent(String id) async {
-    try {
-      await db.collection(collectionPath).doc(id).delete();
-    } catch (e) {
-      print('Lỗi khi xóa sự kiện: $e');
-    }
+  Future<void> deleteEvent(EventModel item) async {
+   
+      await db.collection(path).doc(item.id).delete();
+    
   }
-
-  saveEvent(event) {}
 }
