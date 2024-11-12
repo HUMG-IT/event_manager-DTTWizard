@@ -35,10 +35,8 @@ void main() {
     recurrenceRule: 'None',
   );
 
+  // Thực hiện copy và thay đổi một thuộc tính
   final modified = original.copyWith(event: 'Modified Event');
-
-  // Kiểm tra các thuộc tính đã được sửa đổi
-  expect(modified.event, 'Modified Event');
 
   // Kiểm tra các thuộc tính không thay đổi
   expect(modified.id, original.id);
@@ -48,7 +46,11 @@ void main() {
   expect(modified.subject, original.subject);
   expect(modified.notes, original.notes);
   expect(modified.recurrenceRule, original.recurrenceRule);
+
+  // Kiểm tra thuộc tính đã thay đổi
+  expect(modified.event, 'Modified Event');
 });
+
 
 
     test('EventModel toMap and fromMap', () {
