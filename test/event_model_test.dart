@@ -34,7 +34,7 @@ void main() {
 
     final updatedEvent = event.copyWith(
       subject: 'Updated Meeting',
-      isAllDay: false,
+      isAllDay: true,
     );
 
     expect(updatedEvent.subject, 'Updated Meeting');

@@ -15,7 +15,7 @@ class EventModel {
     this.event,
     required this.startTime,
     required this.endTime,
-    this.isAllDay= false,
+    this.isAllDay= true,
     this.subject ='',
     required this.notes,
     required this.recurrenceRule,
