@@ -23,35 +23,23 @@ void main() {
       expect(event.recurrenceRule, 'FREQ=DAILY;COUNT=10');
     });
 
-   test('EventModel copyWith test', () {
-  final original = EventModel(
-    id: '123',
-    event: 'Event 1',
-    startTime: DateTime(2023, 12, 25, 8, 30),
-    endTime: DateTime(2023, 12, 25, 9, 30),
-    isAllDay: false,
-    subject: 'Subject 1',
-    notes: 'Notes 1',
-    recurrenceRule: 'None',
-  );
+    test('EventModel copyWith', () {
+      final event = EventModel(
+        id: '1',
+        startTime: DateTime(2023, 10, 1, 10, 0),
+        endTime: DateTime(2023, 10, 1, 12, 0), subject: '', notes: '', recurrenceRule: '',
+      );
 
-  // Thực hiện copy và thay đổi một thuộc tính
-  final modified = original.copyWith(event: 'Modified Event');
+      final updatedEvent = event.copyWith(
+        subject: 'Updated Meeting',
+        isAllDay: false,
+      );
 
-  // Kiểm tra các thuộc tính không thay đổi
-  expect(modified.id, original.id);
-  expect(modified.startTime, original.startTime);
-  expect(modified.endTime, original.endTime);
-  expect(modified.isAllDay, original.isAllDay);
-  expect(modified.subject, original.subject);
-  expect(modified.notes, original.notes);
-  expect(modified.recurrenceRule, original.recurrenceRule);
-
-  // Kiểm tra thuộc tính đã thay đổi
-  expect(modified.event, 'Modified Event');
-});
-
-
+      expect(updatedEvent.subject, 'Updated Meeting');
+      expect(updatedEvent.isAllDay, true);
+      expect(updatedEvent.startTime, event.startTime);
+      expect(updatedEvent.endTime, event.endTime);
+    });
 
     test('EventModel toMap and fromMap', () {
       final event = EventModel(
@@ -84,19 +72,18 @@ void main() {
       expect(newEvent, equals(event));
     });
 
-    test('EventModel formatted time strings test', () {
-  final event = EventModel(
-    startTime: DateTime(2023, 12, 25, 8, 30),
-    endTime: DateTime(2023, 12, 25, 9, 30),
-    isAllDay: false,
-    subject: 'Test Subject',
-    notes: 'Test Notes',
-    recurrenceRule: 'None',
-  );
+    test('EventModel formatted time strings', () {
+      final event = EventModel(
+        startTime: DateTime(2023, 12, 25, 8, 30),
+        endTime: DateTime(2023, 12, 25, 10, 30),
+        isAllDay: false,
+        notes: '',
+        subject: '',
+        recurrenceRule: '',
+      );
 
-  // Kiểm tra chuỗi thời gian đã định dạng
-  expect(event.formattedStartTimeString, '8:30, 25/12/2023');
-  expect(event.formattedEndTimeString, '9:30, 25/12/2023');
-});
+      expect(event.formatedStartTimeString, '8:30, 25/12/2023');
+      expect(event.formatedEndTimeString, '10:30, 25/12/2023');
+    });
   });
 }

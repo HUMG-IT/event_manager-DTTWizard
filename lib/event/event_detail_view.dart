@@ -109,14 +109,14 @@ class _EventDetailViewState extends State<EventDetailView> {
                 const SizedBox(height: 16),
                 ListTile(
                   title:
-                      Text('Bắt đầu: ${widget.event.formattedStartTimeString }'),
+                      Text('Bắt đầu: ${widget.event.formatedStartTimeString }'),
                   trailing: const Icon(Icons.today_outlined),
                   onTap: () => _pickDateTime(isStart: true),
                 ),
                 // const SizedBox(height: 16),
                 ListTile(
                   title:
-                      Text('Kết thúc: ${widget.event.formattedEndTimeString }'),
+                      Text('Kết thúc: ${widget.event.formatedEndTimeString }'),
                   trailing: const Icon(Icons.today_outlined),
                   onTap: () => _pickDateTime(isStart: false),
                 ),

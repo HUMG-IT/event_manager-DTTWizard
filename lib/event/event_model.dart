@@ -108,9 +108,9 @@ class EventModel {
 }
 
 extension EventModelExtensions on EventModel {
-  String get formattedStartTimeString =>
+  String get formatedStartTimeString =>
       '${startTime.hour}:${startTime.minute.toString().padLeft(2, '0')}, ${startTime.day}/${startTime.month}/${startTime.year}';
 
-  String get formattedEndTimeString =>
+  String get formatedEndTimeString =>
       '${endTime.hour}:${endTime.minute.toString().padLeft(2, '0')}, ${endTime.day}/${endTime.month}/${endTime.year}';
 }
